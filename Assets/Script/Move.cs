@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public float speed;
 
     public void mover(Vector3 movimiento)
     {
-        transform.position += movimiento;
+        transform.position += movimiento * speed;
     }
 }
