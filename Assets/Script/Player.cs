@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
        movement.y = Input.GetAxisRaw("Vertical");
 
        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+       playerController();
     }
     void FixedUpdate(){
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
@@ -33,5 +34,13 @@ public class Player : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
         rb.rotation = angle;
+    }
+
+    private void playerController()
+    {
+         if(Input.GetMouseButtonDown(0))
+         {
+            gun.Shot(transform.rotation);
+         }
     }
 }
