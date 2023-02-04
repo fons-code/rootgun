@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     float h;
     float v;
     Vector3 moveDirection;
+    Move mover;
+    Gun gun;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
 
        moveDirection.x = h;
        moveDirection.y = v;
-
        transform.position += moveDirection * Time.deltaTime * speed; 
+       
     }
 }
