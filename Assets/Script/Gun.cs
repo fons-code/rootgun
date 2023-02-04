@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public GameObject bullet;
+    public Transform mira;
     public float cadencia = 1f;
     public bool puedeDisparar;
     // Update is called once per frame
@@ -14,7 +15,7 @@ public class Gun : MonoBehaviour
         if(puedeDisparar)
         {   puedeDisparar = false;
             Vector3 balaVector =transform.position;
-            GameObject shot = Instantiate(bullet,transform.position + new Vector3(1,1,0), direction);
+            GameObject shot = Instantiate(bullet,mira.transform.position, direction);
             StartCoroutine(vuelveDisparar());
         }
     }
