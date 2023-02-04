@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-
-    public void mover(vector3 movimiento)
+    public void mover(Vector3 movimiento)
     {
         transform.position += movimiento;
     }

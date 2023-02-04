@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
     {
         if(puedeDisparar)
         {
-            Instanciate(bullet,transform.position,Quaternion.identity);
+            Instantiate(bullet,transform.position,Quaternion.identity);
             vuelveDisparar();
         }
     }
