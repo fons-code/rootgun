@@ -8,6 +8,6 @@ public class Move : MonoBehaviour
 
     public void mover(Vector3 movimiento)
     {
-        transform.position += movimiento * speed;
+        transform.position += movimiento * Time.deltaTime * speed;
     }
 }
