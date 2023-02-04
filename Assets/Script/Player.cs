@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mover = GetComponent<Move>();
+        gun = GetComponent<Gun>();
     }
 
     // Update is called once per frame
