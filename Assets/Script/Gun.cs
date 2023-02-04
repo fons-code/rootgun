@@ -6,15 +6,16 @@ public class Gun : MonoBehaviour
 {
     public GameObject bullet;
     public float cadencia = 1f;
-    public bool puedeDisparar = true;
+    public bool puedeDisparar;
     // Update is called once per frame
     
-    public void Shot()
+    public void Shot(Quaternion direction)
     {
         if(puedeDisparar)
-        {
-            Instantiate(bullet,transform.position,Quaternion.identity);
-            vuelveDisparar();
+        {   puedeDisparar = false;
+            Vector3 balaVector =transform.position;
+            GameObject shot = Instantiate(bullet,transform.position + new Vector3(1,1,0), direction);
+            StartCoroutine(vuelveDisparar());
         }
     }
     
