@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     Move mover;
     Gun gun;
+    Vida vida;
     public float x;
     public float y;
     public bool cambiarDireccion;
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
         y = Random.Range(-1,1);
         mover = GetComponent<Move>();
         gun = GetComponent<Gun>();
+        vida = GetComponent<Vida>();
         jugador = GameObject.Find("Hero");
     }
 
@@ -34,8 +36,6 @@ public class Enemy : MonoBehaviour
         mover.mover(new Vector3(x,y,0));
 
         //Disparo
-        // float log = Mathf.Sqrt(2) - (int) Mathf.Sqrt(2);
-        // Debug.Log(log);
         gun.Shot(transform.rotation);
     }
 
@@ -52,5 +52,13 @@ public class Enemy : MonoBehaviour
         Vector3 dir = jugador.transform.position - transform.position;
         rot = Quaternion.LookRotation(Vector3.forward, dir);
         transform.rotation =  Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 2f);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "PlayerBullet")
+        {
+            vida.reducirVida();
+        }
     }
 }
