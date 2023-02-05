@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public float score = 0;
     public bool terminado = false;
+    public int ronda = 0;
+    GameObject enemigoInvocado;
     [SerializeField] GameObject enemy;
+    [SerializeField] GameObject PadreEnemigos;
+    private List<Transform> Enemigos = new List<Transform>();
 
     void Awake()
     {
@@ -37,11 +41,71 @@ public class GameManager : MonoBehaviour
     {
         for(int i=0; i<cantidad; i++)
         {   
-            Debug.Log(i);
             Vector3 ubicacion = new Vector3 (posicion.x,posicion.y+(i*2),0);
             GameObject enemigoInvocado = Instantiate(enemy,ubicacion, direction);
             enemigoInvocado.GetComponentInChildren<Vida>().vida = cantidad;
+            enemigoInvocado.transform.SetParent(PadreEnemigos.transform);
         }
     }
+
+    public void spawnEnemysGame()
+    {
+        Vector3 ubicacion = new Vector3 (4,-1f,0);
+        switch (ronda)
+        {
+            case 0:
+                    
+                    enemigoInvocado = Instantiate(enemy,ubicacion, Quaternion.identity);
+                    enemigoInvocado.GetComponentInChildren<Vida>().vida = 4;
+                    enemigoInvocado.transform.SetParent(PadreEnemigos.transform);
+            break;
+            case 1:
+                    enemigoInvocado = Instantiate(enemy,ubicacion, Quaternion.identity);
+                    enemigoInvocado.GetComponentInChildren<Vida>().vida = 4;
+                    enemigoInvocado.GetComponentInChildren<Vida>().Acorazado = true;
+                    enemigoInvocado.GetComponentInChildren<Vida>().armadura = 2;
+                    enemigoInvocado.transform.SetParent(PadreEnemigos.transform);
+            break;
+            case 2:
+                for(int i=0; i<3; i++)
+                {   if(i != 3)
+                    {
+                        ubicacion = new Vector3 (4,-1f+(i*2),0);
+                        enemigoInvocado = Instantiate(enemy,ubicacion, Quaternion.identity);
+                        enemigoInvocado.GetComponentInChildren<Vida>().vida = 4;
+                        enemigoInvocado.transform.SetParent(PadreEnemigos.transform);
+                    }
+                    else
+                    {
+                        ubicacion = new Vector3 (4,-1f+(i*2),0);
+                        enemigoInvocado = Instantiate(enemy,ubicacion, Quaternion.identity);
+                        enemigoInvocado.GetComponentInChildren<Vida>().vida = 4;
+                        enemigoInvocado.GetComponentInChildren<Vida>().Acorazado = true;
+                        enemigoInvocado.GetComponentInChildren<Vida>().armadura = 4;
+                        enemigoInvocado.transform.SetParent(PadreEnemigos.transform);                        
+                    }
+                }
+
+            break;
+        }
+        ronda++;
+    }
+
+    public void obtenerEnemigos()
+    {   Enemigos.Clear();
+        foreach(Transform child in PadreEnemigos.transform)
+        {   
+            Enemigos.Add(child);
+        }
+
+        Transform[] lista = Enemigos.ToArray();
+        Debug.Log(lista.Length);
+        if(lista.Length == 1 && ronda < 3)
+        {
+            spawnEnemysGame();
+        }
+
+    }
+
 
 }
