@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Vector2 mousePos;
     Move mover;
     Gun gun;
+    [SerializeField] Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,23 @@ public class Player : MonoBehaviour
     {
        movement.x = Input.GetAxisRaw("Horizontal");
        movement.y = Input.GetAxisRaw("Vertical");
+       if( Input.GetAxisRaw("Horizontal") == 1 )
+       {
+            anim.SetBool("Move",true);
+       }
+       else
+       {
+            anim.SetBool("Move",false);
+       }
+
+       if(Input.GetAxisRaw("Horizontal") == -1)
+       {
+            anim.SetBool("BackMove",true);
+       }
+       else
+       {
+            anim.SetBool("BackMove",false);
+       }
 
        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
        playerController();
