@@ -207,7 +207,6 @@ MonoBehaviour:
   texto: {fileID: 7469622895221377782}
   textoAaparecer: {fileID: 8572353400517678041, guid: b5a98e568843f95428368a26343c423f, type: 3}
   AcorazadoGO: {fileID: 8060816128800889160}
-  Padre: {fileID: 0}
   textoACO: {fileID: 8401993802794172314}
 --- !u!1 &831940015094167858
 GameObject:
@@ -485,12 +484,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd281e36063cf7249af3b89c2e44f430, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ff61ec428827884581f99c9e77ad00b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 1
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.42, y: 1.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -741,12 +740,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd281e36063cf7249af3b89c2e44f430, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ff61ec428827884581f99c9e77ad00b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.42, y: 1.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -767,7 +766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &584528252968050326
 Transform:
   m_ObjectHideFlags: 0
