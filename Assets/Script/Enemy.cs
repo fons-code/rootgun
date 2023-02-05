@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public float y;
     public bool cambiarDireccion;
     public GameObject jugador;
-    Quaternion rot;
+    public Quaternion rot;
     public Vector2 distancia;
     [SerializeField] ParticleSystem  particulas;
     [SerializeField] SpriteRenderer  sprite;
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         mover = GetComponent<Move>();
         gun = GetComponent<Gun>();
         vida = GetComponent<Vida>();
-        jugador = GameObject.Find("Hero");
+        jugador = GameObject.Find("body");
     }
 
     // Update is called once per frame
