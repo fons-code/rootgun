@@ -419,6 +419,8 @@ MonoBehaviour:
   y: 0
   cambiarDireccion: 1
   jugador: {fileID: 0}
+  distancia: {x: 0, y: 0}
+  particulas: {fileID: 0}
 --- !u!114 &8784230035882598354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,3 +436,4 @@ MonoBehaviour:
   vida: 4
   destruir: 0
   texto: {fileID: 7432377467281941119}
+  textoAaparecer: {fileID: 8572353400517678041, guid: b5a98e568843f95428368a26343c423f, type: 3}

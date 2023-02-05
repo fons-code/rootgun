@@ -10,4 +10,9 @@ public class Move : MonoBehaviour
     {
         transform.position += movimiento * Time.deltaTime * speed;
     }
+
+    public void moveFoward(Vector3 origen,Vector3 objetivo)
+    {
+        transform.position = Vector2.MoveTowards(origen,objetivo, (speed * Time.deltaTime));
+    }
 }
