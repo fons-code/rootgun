@@ -12,11 +12,13 @@ public class Enemy : MonoBehaviour
     public bool cambiarDireccion;
     public GameObject jugador;
     Quaternion rot;
+    public Vector2 distancia;
+    [SerializeField] ParticleSystem  particulas;
     // Start is called before the first frame update
     void Start()
     {
         x = Random.Range(-1,1);
-        y = Random.Range(-1,1);
+        y = Random.Range(1,1);
         mover = GetComponent<Move>();
         gun = GetComponent<Gun>();
         vida = GetComponent<Vida>();
@@ -27,23 +29,26 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         //Movimiento
+        rotateToPlayer();
+        distancia = transform.position - jugador.transform.position;    
         if(cambiarDireccion)
         { 
             StartCoroutine(volverAMover());
             cambiarDireccion = false;
         }
-        rotateToPlayer();
-        mover.mover(new Vector3(x,y,0));
-
-        //Disparo
-        gun.Shot(transform.rotation);
+        // mover.mover(new Vector3(x,y,0));
+         //Disparo
+        if(!vida.destruir)
+        {
+            gun.Shot(transform.rotation);
+        }
+        
     }
 
     public IEnumerator volverAMover()
     {
         yield return new WaitForSeconds(1f);
-        x = Random.Range(-1,1);
-        y = Random.Range(-1,1);
+        setValoresAXY(distancia);
         cambiarDireccion = true;
     }
 
@@ -57,8 +62,38 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "PlayerBullet")
-        {
+        {   
             vida.reducirVida();
+        }
+    }
+
+    public void setValoresAXY(Vector2 dis)
+    {
+
+        if(dis.x>9)
+        {
+            x = Random.Range(-1,-1);
+        } 
+        else if (dis.x<-9)
+        {
+           x = Random.Range(1,1);
+        }
+        else
+        {
+            x = Random.Range(-1,1);
+        }
+             
+
+        if(dis.y>4)
+        {
+            y = Random.Range(-1,-1);
+        }else if(dis.x<-4)
+        {
+            y = Random.Range(1,1);
+        }
+        else
+        {
+            y = Random.Range(-1,1);
         }
     }
 }
