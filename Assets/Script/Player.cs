@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     Move mover;
     Gun gun;
     [SerializeField] Animator anim;
+    [SerializeField] ParticleSystem particulas;
     // Start is called before the first frame update
     void Start()
     {
