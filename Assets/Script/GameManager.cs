@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int ronda = 0;
     GameObject enemigoInvocado;
     [SerializeField] GameObject enemy;
+    [SerializeField] GameObject boss;
     [SerializeField] GameObject PadreEnemigos;
     private List<Transform> Enemigos = new List<Transform>();
 
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
         }
 
         Transform[] lista = Enemigos.ToArray();
-        if(lista.Length == 1 && ronda < 3)
+        if(lista.Length == 1 && ronda < 4)
         {
             spawnEnemysGame();
         }
@@ -107,6 +108,10 @@ public class GameManager : MonoBehaviour
                         }
                     }
 
+                break;
+                case 3:
+                        Debug.Log("oh no");
+                        enemigoInvocado = Instantiate(boss,ubicacion, Quaternion.identity);
                 break;
             }
             ronda++;
