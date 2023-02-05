@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour
             y = Random.Range(-1,-1);
         }else if(dis.y<-3)
         {
+            Debug.Log("aqui");
             y = Random.Range(1,1);
         }
         else
