@@ -16,7 +16,11 @@ public class Vida : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        texto.text =vida.ToString();
+        if(gameObject.tag != "Player")
+        {
+            texto.text = vida.ToString();
+        }
+
         AcorazadoGO.SetActive(Acorazado);
         if(Acorazado)
         {
@@ -71,11 +75,14 @@ public class Vida : MonoBehaviour
                     Destroy(gameObject);
                 }else
                 {
-                    vida =  (int) Mathf.Sqrt(Mathf.Abs(vida));
-                    texto.text = vida.ToString();
+                    vida -= 1;
+                    if(gameObject.tag != "Player")
+                    {
+                        texto.text = vida.ToString();
+                    }
+                    
                 }
             }
         }
     }
-
 }
