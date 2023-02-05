@@ -55,9 +55,17 @@ public class Enemy : MonoBehaviour
 
     public void rotateToPlayer()
     {
-        Vector3 dir = jugador.transform.position - transform.position;
-        rot = Quaternion.LookRotation(Vector3.forward, dir);
-        transform.rotation =  Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 2f);
+        if(jugador == null)
+        {
+            jugador = GameObject.Find("body");
+        }
+        else
+        {
+            Vector3 dir = jugador.transform.position - transform.position;
+            rot = Quaternion.LookRotation(Vector3.forward, dir);
+            transform.rotation =  Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 2f);
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
