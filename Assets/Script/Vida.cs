@@ -33,9 +33,13 @@ public class Vida : MonoBehaviour
         {
             if(gameObject.tag == "Enemy")
             {   float txt = Mathf.Sqrt(Mathf.Abs(vida)) - (int) Mathf.Sqrt(Mathf.Abs(vida));
-                GameObject textoInvo = Instantiate(textoAaparecer, transform.position,  Quaternion.identity);
-                textoInvo.GetComponent<InvocarTexto>().invocarTexto(txt.ToString());
-                GameManager.Instance.subirScore(txt);
+                if( txt > 0)
+                {
+                    GameObject textoInvo = Instantiate(textoAaparecer, transform.position,  Quaternion.identity);
+                    textoInvo.GetComponent<InvocarTexto>().invocarTexto(txt.ToString());
+                    GameManager.Instance.subirScore(txt);
+                }
+
                 vida = (int) Mathf.Sqrt(Mathf.Abs(vida));
                 texto.text = vida.ToString();
                 GameManager.Instance.spawnEnemys(transform.position,vida,transform.rotation);

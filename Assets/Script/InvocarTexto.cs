@@ -25,6 +25,6 @@ public class InvocarTexto : MonoBehaviour
     public void invocarTexto(string text)
     {
         texto.text = text;
-        Destroy(gameObject,3f);
+        Destroy(gameObject,1f);
     }
 }
