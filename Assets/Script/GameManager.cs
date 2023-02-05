@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         for(int i=0; i<cantidad; i++)
         {   
             Debug.Log(i);
-            Vector3 ubicacion = new Vector3 (posicion.x+i,posicion.y,0);
+            Vector3 ubicacion = new Vector3 (posicion.x,posicion.y+(i*2),0);
             GameObject enemigoInvocado = Instantiate(enemy,ubicacion, direction);
             enemigoInvocado.GetComponentInChildren<Vida>().vida = cantidad;
         }

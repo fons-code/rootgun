@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     Quaternion rot;
     public Vector2 distancia;
     [SerializeField] ParticleSystem  particulas;
+    [SerializeField] SpriteRenderer  sprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(volverAMover());
             cambiarDireccion = false;
         }
-        // mover.mover(new Vector3(x,y,0));
+        mover.mover(new Vector3(x,y,0));
          //Disparo
         if(!vida.destruir)
         {
@@ -70,30 +71,28 @@ public class Enemy : MonoBehaviour
     public void setValoresAXY(Vector2 dis)
     {
 
-        if(dis.x>9)
+        if(dis.x<7)
         {
-            x = Random.Range(-1,-1);
+            x = Random.Range(1,1);
         } 
-        else if (dis.x<-9)
-        {
-           x = Random.Range(1,1);
-        }
         else
         {
             x = Random.Range(-1,1);
         }
              
 
-        if(dis.y>4)
+        if(dis.y>3)
         {
             y = Random.Range(-1,-1);
-        }else if(dis.x<-4)
+        }else if(dis.y<-3)
         {
+            Debug.Log("aqui");
             y = Random.Range(1,1);
         }
         else
         {
             y = Random.Range(-1,1);
         }
+        
     }
 }
