@@ -13,6 +13,9 @@ public class Vida : MonoBehaviour
     [SerializeField] GameObject textoAaparecer;
     [SerializeField] GameObject AcorazadoGO;
     [SerializeField] TMP_Text textoACO;
+    // Audio 
+    public AudioSource hit;
+    public AudioSource death;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,7 @@ public class Vida : MonoBehaviour
                 Destroy(gameObject);
                 if(gameObject.tag == "Player")
                 {
+                    death.Play();
                     GameManager.Instance.setEstadoDeJuego(true);
                 }
                 GameManager.Instance.obtenerEnemigos();
@@ -75,6 +79,7 @@ public class Vida : MonoBehaviour
                     Destroy(gameObject);
                 }else
                 {
+                    hit.Play();
                     vida -= 1;
                     if(gameObject.tag != "Player")
                     {
