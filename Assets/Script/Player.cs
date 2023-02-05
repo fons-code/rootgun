@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Vector2 mousePos;
     Move mover;
     Gun gun;
+    Vida vida;
     [SerializeField] Animator anim;
     [SerializeField] ParticleSystem particulas;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     {
         mover = GetComponent<Move>();
         gun = GetComponent<Gun>();
+        vida = GetComponent<Vida>();
     }
 
     // Update is called once per frame
@@ -25,27 +27,28 @@ public class Player : MonoBehaviour
     {
        movement.x = Input.GetAxisRaw("Horizontal");
        movement.y = Input.GetAxisRaw("Vertical");
-       if( Input.GetAxisRaw("Horizontal") == 1 )
+       if( Input.GetAxisRaw("Horizontal") > 0 )
        {
-            anim.SetBool("Move",true);
+          anim.SetBool("Move",true);
        }
        else
        {
-            anim.SetBool("Move",false);
+          anim.SetBool("Move",false);
        }
 
        if(Input.GetAxisRaw("Horizontal") == -1)
        {
-            anim.SetBool("BackMove",true);
+          anim.SetBool("BackMove",true);
        }
        else
        {
-            anim.SetBool("BackMove",false);
+          anim.SetBool("BackMove",false);
        }
 
        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
        playerController();
     }
+
     void FixedUpdate(){
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
 
@@ -61,5 +64,33 @@ public class Player : MonoBehaviour
          {
             gun.Shot(transform.rotation);
          }
+
+          if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+         {
+            particulas.Play();
+         }
     }
+
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "EnemyBullet")
+        {   
+            vida.reducirVida();
+            cambiarColorParticulas(vida.vida);
+        }
+    }
+
+     public void cambiarColorParticulas(int vida)
+     {
+          ParticleSystem.MainModule main = GetComponentInChildren<ParticleSystem>().main;
+          switch(vida)
+          {
+               case 2:
+               main.startColor = new Color(255, 155, 0, 255);
+               break;
+               case 1:
+               main.startColor = new Color(255, 0, 0, 255);
+               break;
+          }
+     }
 }
